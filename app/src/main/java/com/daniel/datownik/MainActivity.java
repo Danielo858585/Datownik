@@ -16,12 +16,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.daniel.datownik.db.Children;
+import com.daniel.datownik.db.ChildrensDAO;
+
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button check, save, open, clear;
     private EditText et_day, et_month, et_year, et_childName;
     private int day, month, year;
     private Intent intent;
+    private ChildrensDAO childrensDAO;
 
 
     @Override
@@ -37,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         et_month = (EditText) findViewById(R.id.et_month);
         et_year = (EditText) findViewById(R.id.et_year);
         et_childName = (EditText) findViewById(R.id.et_childName);
+        childrensDAO = new ChildrensDAO(this);
+        childrensDAO.open();
+        List<Children> values = childrensDAO;
         intent = new Intent(this, ResumeActivity.class);
 
         clear.setOnClickListener(new View.OnClickListener() {

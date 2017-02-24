@@ -1,4 +1,4 @@
-package com.daniel.datownik;
+package com.daniel.datownik.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -23,8 +23,8 @@ public class SqliteDbHelper extends SQLiteOpenHelper {
             +COLUMN_NAME
             + " text not null);";
 
-    public SqliteDbHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DB_NAME, factory, DB_VERSION);
+    public SqliteDbHelper(Context context) {
+        super(context, DB_NAME, null, DB_VERSION);
     }
 
     @Override

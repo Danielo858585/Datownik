@@ -1,4 +1,4 @@
-package com.daniel.datownik;
+package com.daniel.datownik.db;
 
 /**
  * Created by Daniel on 23.02.2017.
@@ -8,7 +8,7 @@ public class Children {
 
     public Children() {
     }
-
+    public String name;
     public int id;
 
     public int getId() {
@@ -27,5 +27,5 @@ public class Children {
         this.name = name;
     }
 
-    public String name;
+
 }

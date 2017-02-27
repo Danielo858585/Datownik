@@ -12,8 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.daniel.datownik.db.Children;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private int day, month, year;
     private Intent intent;
     private ChildrensDAO childrensDAO;
+    private ListView children;
 
 
     @Override
@@ -43,9 +46,16 @@ public class MainActivity extends AppCompatActivity {
         et_month = (EditText) findViewById(R.id.et_month);
         et_year = (EditText) findViewById(R.id.et_year);
         et_childName = (EditText) findViewById(R.id.et_childName);
+        children = (ListView) findViewById(R.id.lv_children);
         childrensDAO = new ChildrensDAO(this);
         childrensDAO.open();
-        List<Children> values = childrensDAO;
+        List<Children> values = childrensDAO.getAllChildrens();
+        ArrayAdapter<Children> adapter = new ArrayAdapter<Children>(this,android.R.layout.simple_list_item_1, values);
+        children.setAdapter(adapter);
+
+
+
+
         intent = new Intent(this, ResumeActivity.class);
 
         clear.setOnClickListener(new View.OnClickListener() {
@@ -215,6 +225,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Brak dziecka o imieniu " + et_childName.getText().toString(), Toast.LENGTH_SHORT);
                 toast.show();
             }
+
 
         }
     }

@@ -19,7 +19,7 @@ public class SqliteDbHelper extends SQLiteOpenHelper {
             + TABLE_CHILDRENS
             + "("
             + COLUMN_ID
-            + "integer primary key autoincrement, "
+            + " integer primary key autoincrement, "
             +COLUMN_NAME
             + " text not null);";
 

@@ -8,6 +8,14 @@ public class Children {
 
     public Children() {
     }
+
+    @Override
+    public String toString() {
+        return "Children{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
     public String name;
     public int id;
 

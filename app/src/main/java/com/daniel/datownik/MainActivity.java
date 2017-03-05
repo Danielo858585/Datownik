@@ -25,7 +25,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button check, save, open, clear;
+    private Button check, save, open, clear, addChild;
     private EditText et_day, et_month, et_year, et_childName;
     private int day, month, year;
     private Intent intent;
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         save = (Button) findViewById(R.id.btn_save);
         open = (Button) findViewById(R.id.btn_open);
         clear = (Button) findViewById(R.id.btn_clear);
+        addChild = (Button) findViewById(R.id.btn_addChild);
         et_day = (EditText) findViewById(R.id.et_day);
         et_month = (EditText) findViewById(R.id.et_month);
         et_year = (EditText) findViewById(R.id.et_year);
@@ -50,10 +51,8 @@ public class MainActivity extends AppCompatActivity {
         childrensDAO = new ChildrensDAO(this);
         childrensDAO.open();
         List<Children> values = childrensDAO.getAllChildrens();
-        ArrayAdapter<Children> adapter = new ArrayAdapter<Children>(this,android.R.layout.simple_list_item_1, values);
+        ArrayAdapter<Children> adapter = new ArrayAdapter<Children>(this, android.R.layout.simple_list_item_1, values);
         children.setAdapter(adapter);
-
-
 
 
         intent = new Intent(this, ResumeActivity.class);
@@ -75,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openOnClick();
+                loadOnClick();
             }
         });
 
@@ -91,13 +90,12 @@ public class MainActivity extends AppCompatActivity {
                 Calendar result = Calendar.getInstance();
 
 
-                try{
+                try {
                     day = Integer.parseInt(et_day.getText().toString());
                     month = Integer.parseInt(et_month.getText().toString()) - 1;
                     year = Integer.parseInt(et_year.getText().toString());
                     dateOfBirth.set(year, month, day);
-                }
-                catch (Exception e){
+                } catch (Exception e) {
 
                 }
 
@@ -109,12 +107,19 @@ public class MainActivity extends AppCompatActivity {
 
                 intent.putExtra("tygodnie", wynikTygodnie);
                 intent.putExtra("dni", wynikDni);
-                if (et_childName.getText().toString().length()>0){
-                    intent.putExtra("name",et_childName.getText().toString());
+                if (et_childName.getText().toString().length() > 0) {
+                    intent.putExtra("name", et_childName.getText().toString());
+                } else {
+                    intent.putExtra("name", "");
                 }
-                else{
-                    intent.putExtra("name","");
-                }
+                startActivity(intent);
+            }
+        });
+
+        addChild.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddChildrenActivity.class);
                 startActivity(intent);
             }
         });
@@ -213,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
         et_childName.setText("");
     }
 
-    private void openOnClick() {
+    private void loadOnClick() {
         SharedPreferences sharedPreferences = getSharedPreferences("datownikMojeUstawienia", MODE_PRIVATE);
         if (sharedPreferences.contains(et_childName.getText().toString() + "childName")) {
             if ((sharedPreferences.getString(et_childName.getText().toString() + "childName", "")).equals(et_childName.getText().toString())) {

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class ChildrensDAO {
         sqliteDbHelper = new SqliteDbHelper(context);
     }
 
-    public void open() throws SQLException{
+    public void open() throws SQLException {
         sqLiteDatabase = sqliteDbHelper.getWritableDatabase();
     }
 
@@ -30,16 +31,21 @@ public class ChildrensDAO {
         sqliteDbHelper.close();
     }
 
-    public Children createChild(String name){
+    public void insertChild(String name){
         ContentValues values = new ContentValues();
-        values.put(sqliteDbHelper.COLUMN_NAME,name);
-        long insertId = sqLiteDatabase.insert(sqliteDbHelper.TABLE_CHILDRENS,null,values);
-        Cursor cursor = sqLiteDatabase.query(sqliteDbHelper.TABLE_CHILDRENS,allColumns,sqliteDbHelper.COLUMN_ID + " = "
-        + insertId,null,null,null,null);
-        cursor.moveToFirst();
-        Children children = cursonToChild(cursor);
-        cursor.close();
-        return children;
+        values.put(sqliteDbHelper.COLUMN_NAME,name.toString());
+        sqliteDbHelper.getWritableDatabase().insert(Childrens.TABLE_CHILDRENS, null, values);
+        Log.d("AddChild","Dodane do bazy");
+
+
+
+//        long insertId = sqLiteDatabase.insert(sqliteDbHelper.TABLE_CHILDRENS,null,values);
+//        Cursor cursor = sqLiteDatabase.query(sqliteDbHelper.TABLE_CHILDRENS,allColumns,sqliteDbHelper.COLUMN_ID + " = "
+//        + insertId,null,null,null,null);
+//        cursor.moveToFirst();
+//        Children children = cursonToChild(cursor);
+//        cursor.close();
+//        return children;
     }
 
     public List<Children> getAllChildrens(){

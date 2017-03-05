@@ -13,7 +13,10 @@
     tools:context="com.daniel.datownik.MainActivity"
     style="@style/Text">
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:orientation="vertical">
     <EditText
         android:id="@+id/et_day"
         android:layout_width="match_parent"
@@ -46,13 +49,16 @@
 
     <EditText
         android:id="@+id/et_childName"
+        style="@style/Text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Wprowadź imię dziecka"
         android:inputType="text"
-        android:maxEms="2"
-        style="@style/Text"/>
+        android:maxEms="2" />
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,7 +86,6 @@
     </LinearLayout>
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -88,37 +93,44 @@
 
         <Button
             android:id="@+id/btn_save"
+            style="@style/Text.Button.Big"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="34dp"
             android:layout_weight="1"
-            android:text="Zapisz"
-            style="@style/Text.Button.Big"/>
+            android:text="Zapisz" />
 
         <Button
             android:id="@+id/btn_open"
+            style="@style/Text.Button.Big"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="34dp"
             android:layout_weight="1"
-            android:text="Wczytaj"
-            style="@style/Text.Button.Big"/>
+            android:text="Wczytaj" />
 
+        <Button
+            android:id="@+id/btn_addChild"
+            style="@style/Text.Button.Big"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="34dp"
+            android:layout_weight="1"
+            android:text="Dodaj dziecko" />
 
+    </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/lv_children">
+        <ListView
+            android:id="@+id/lv_children"
+            android:layout_width="match_parent"
+            android:layout_height="160dp">
 
-            </ListView>
+        </ListView>
     </LinearLayout>
 
 </LinearLayout>

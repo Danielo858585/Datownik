@@ -8,6 +8,38 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.daniel.datownik.AddChildrenActivity">
+    tools:context="com.daniel.datownik.AddChildrenActivity"
+    style="@style/Text">
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/et_nameChild"
+        android:hint="@string/getChildName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_nameChild"
+        android:text="@string/save"
+        android:id="@+id/btn_saveChild"
+        style="@style/Text.Button.Medium"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_saveChild"
+        android:text="@string/back"
+        android:id="@+id/btn_back"
+        style="@style/Text.Button.Medium"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_back"
+        android:text="@string/scan_code"
+        android:id="@+id/btn_qrCode"
+        style="@style/Text.Button.Medium"/>
 </RelativeLayout>

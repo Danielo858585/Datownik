@@ -21,7 +21,9 @@
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textSize">20dp</item>
     </style>
-    <style name="Text.Button">Button</style>
+    <style name="Text.Button">
+        <item name="android:padding">5dp</item>
+    </style>
 
     <style name="Text.Button.Big">
         <item name="android:textSize">24dp</item>

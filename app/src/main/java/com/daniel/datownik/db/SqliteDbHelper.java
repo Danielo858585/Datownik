@@ -9,18 +9,15 @@ import android.util.Log;
  * Created by Daniel on 23.02.2017.
  */
 
-public class SqliteDbHelper extends SQLiteOpenHelper {
+public class SqliteDbHelper extends SQLiteOpenHelper implements Childrens {
     public final static String DB_NAME = "parent.db";
     public final static int DB_VERSION = 1;
-    public static final String TABLE_CHILDRENS = "childrens";
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_NAME = "name";
     private static final String DATABASE_CREATE = "create table "
-            + TABLE_CHILDRENS
+            + Childrens.TABLE_CHILDRENS
             + "("
-            + COLUMN_ID
+            + Childrens.COLUMN_ID
             + " integer primary key autoincrement, "
-            +COLUMN_NAME
+            + Childrens.COLUMN_NAME
             + " text not null);";
 
     public SqliteDbHelper(Context context) {
@@ -37,7 +34,7 @@ public class SqliteDbHelper extends SQLiteOpenHelper {
         Log.w(SqliteDbHelper.class.getName(),
                 "Upgrading database from version " + oldVersion + " to "
                         + newVersion + ", which will destroy all old data");
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHILDRENS);
+        db.execSQL("DROP TABLE IF EXISTS " + Childrens.TABLE_CHILDRENS);
         onCreate(db);
     }
 }

@@ -11,14 +11,20 @@ import android.util.Log;
 
 public class SqliteDbHelper extends SQLiteOpenHelper implements Childrens {
     public final static String DB_NAME = "parent.db";
-    public final static int DB_VERSION = 1;
+    public final static int DB_VERSION = 2;
     private static final String DATABASE_CREATE = "create table "
             + Childrens.TABLE_CHILDRENS
-            + "("
+            + " ("
             + Childrens.COLUMN_ID
             + " integer primary key autoincrement, "
             + Childrens.COLUMN_NAME
-            + " text not null);";
+            + " text not null, "
+            + Childrens.COLUMN_DAY
+            + " text not null, "
+            + Childrens.COLUMN_MONTH
+            + " text not null, "
+            + Childrens.COLUMN_YEAR
+            + " text not null)";
 
     public SqliteDbHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

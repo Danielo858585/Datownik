@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ import java.util.List;
 public class ChildrensDAO {
     private SQLiteDatabase sqLiteDatabase;
     private SqliteDbHelper sqliteDbHelper;
-    private String [] allColumns = {sqliteDbHelper.COLUMN_ID, sqliteDbHelper.COLUMN_NAME};
+    private String [] allColumns = {sqliteDbHelper.COLUMN_ID, sqliteDbHelper.COLUMN_NAME, sqliteDbHelper.COLUMN_DAY, sqliteDbHelper.COLUMN_MONTH, sqliteDbHelper.COLUMN_YEAR};
 
     public ChildrensDAO(Context context){
         sqliteDbHelper = new SqliteDbHelper(context);
@@ -31,11 +30,14 @@ public class ChildrensDAO {
         sqliteDbHelper.close();
     }
 
-    public void insertChild(String name){
+    public void insertChild(String name, String day, String month, String year){
         ContentValues values = new ContentValues();
         values.put(sqliteDbHelper.COLUMN_NAME,name.toString());
+        values.put(sqliteDbHelper.COLUMN_DAY,day.toString());
+        values.put(sqliteDbHelper.COLUMN_MONTH,month.toString());
+        values.put(sqliteDbHelper.COLUMN_YEAR,year.toString());
         sqliteDbHelper.getWritableDatabase().insert(Childrens.TABLE_CHILDRENS, null, values);
-        Log.d("AddChild","Dodane do bazy");
+
 
 
 
@@ -65,6 +67,9 @@ public class ChildrensDAO {
         Children children = new Children();
         children.setId(cursor.getInt(0));
         children.setName(cursor.getString(1));
+        children.setDayOfBirth(cursor.getString(2));
+        children.setMonthOfBirth(cursor.getString(3));
+        children.setYearOfBirth(cursor.getString(4));
         return children;
     }
 }

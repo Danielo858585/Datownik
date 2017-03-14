@@ -23,6 +23,7 @@
     </style>
     <style name="Text.Button">
         <item name="android:padding">5dp</item>
+        <item name="android:color">@color/basicColor</item>
     </style>
 
     <style name="Text.Button.Big">

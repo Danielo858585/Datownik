@@ -6,18 +6,36 @@ package com.daniel.datownik.db;
 
 public class Children {
 
-    public Children() {
-    }
-
-    @Override
-    public String toString() {
-        return "Children{" +
-                "name='" + name + '\'' +
-                '}';
-    }
-
-    public String name;
     public int id;
+    public String name;
+    public String dayOfBirth;
+    public String monthOfBirth;
+    public String yearOfBirth;
+
+
+    public String getDayOfBirth() {
+        return dayOfBirth;
+    }
+
+    public void setDayOfBirth(String dayOfBirth) {
+        this.dayOfBirth = dayOfBirth;
+    }
+
+    public String getMonthOfBirth() {
+        return monthOfBirth;
+    }
+
+    public void setMonthOfBirth(String monthOFBirth) {
+        this.monthOfBirth = monthOFBirth;
+    }
+
+    public String getYearOfBirth() {
+        return yearOfBirth;
+    }
+
+    public void setYearOfBirth(String yearOFBirth) {
+        this.yearOfBirth = yearOFBirth;
+    }
 
     public int getId() {
         return id;
@@ -35,5 +53,12 @@ public class Children {
         this.name = name;
     }
 
+    public Children() {
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 
 }

@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +35,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        List<Children> values = childrensDAO.getAllChildrens();
+        ArrayAdapter<Children> adapter = new ArrayAdapter<Children>(this, android.R.layout.simple_list_item_1, values);
+        children.setAdapter(adapter);
+        children.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                et_childName.setText(parent.getItemAtPosition(position).toString());
+            }
+        });
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -53,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
         List<Children> values = childrensDAO.getAllChildrens();
         ArrayAdapter<Children> adapter = new ArrayAdapter<Children>(this, android.R.layout.simple_list_item_1, values);
         children.setAdapter(adapter);
+        children.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                et_childName.setText(parent.getItemAtPosition(position).toString());
+            }
+        });
 
 
         intent = new Intent(this, ResumeActivity.class);

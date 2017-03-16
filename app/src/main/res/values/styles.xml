@@ -21,16 +21,16 @@
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textSize">20dp</item>
     </style>
-    <style name="Text.Button">
-        <item name="android:padding">5dp</item>
-        <item name="android:color">@color/basicColor</item>
+    <style name="Text.Button" parent="Text">
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:background">@color/basicColor</item>
     </style>
 
-    <style name="Text.Button.Big">
+    <style name="Text.Button.Big" parent="Text.Button">
         <item name="android:textSize">24dp</item>
     </style>
 
-    <style name="Text.Button.Medium">
+    <style name="Text.Button.Medium" parent="Text.Button">
         <item name="android:textSize">18dp</item>
     </style>
 

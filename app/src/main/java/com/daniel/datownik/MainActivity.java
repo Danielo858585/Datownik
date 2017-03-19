@@ -11,6 +11,10 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,6 +25,7 @@ import android.widget.Toast;
 
 import com.daniel.datownik.db.Children;
 import com.daniel.datownik.db.ChildrensDAO;
+import com.daniel.datownik.db.SqliteDbHelper;
 
 import java.util.List;
 
@@ -32,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private Intent intent;
     private ChildrensDAO childrensDAO;
     private ListView children;
+    private View view;
+    private SqliteDbHelper dbHelper;
 
 
     @Override
@@ -49,6 +56,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        try{
+            childrensDAO = new ChildrensDAO(this);
+            childrensDAO.deleteChild(id);
+            Toast toast = Toast.makeText(getApplicationContext(),"Pozycja usunięta",Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        catch (Exception e){
+            Log.e("MainActivity", "Błąd usuwania pozycji" + e.toString());
+        }
+
+        return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_context_main,menu);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -63,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         et_year = (EditText) findViewById(R.id.et_year);
         et_childName = (EditText) findViewById(R.id.et_childName);
         children = (ListView) findViewById(R.id.lv_children);
+        registerForContextMenu(children);
         childrensDAO = new ChildrensDAO(this);
         childrensDAO.open();
         List<Children> values = childrensDAO.getAllChildrens();
@@ -71,7 +103,9 @@ public class MainActivity extends AppCompatActivity {
         children.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 et_childName.setText(parent.getItemAtPosition(position).toString());
+
             }
         });
 

@@ -17,6 +17,35 @@ public class Children {
     }
 
     public String name;
+    public String DayOfBirth;
+
+    public String getDayOfBirth() {
+        return DayOfBirth;
+    }
+
+    public void setDayOfBirth(String dayOfBirth) {
+        DayOfBirth = dayOfBirth;
+    }
+
+    public String getMonthOfBirth() {
+        return MonthOfBirth;
+    }
+
+    public void setMonthOfBirth(String monthOfBirth) {
+        MonthOfBirth = monthOfBirth;
+    }
+
+    public String getYearOfBirth() {
+        return YearOfBirth;
+    }
+
+    public void setYearOfBirth(String yearOfBirth) {
+        YearOfBirth = yearOfBirth;
+    }
+
+    public String MonthOfBirth;
+    public String YearOfBirth;
+
     public int id;
 
     public int getId() {

@@ -1,13 +1,101 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.daniel.datownik.MainPanel">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <ImageButton
+            android:id="@+id/dateOfBirth"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="Data urodzenia"
+            android:src="@drawable/ic_date_range_black_48dp" />
+
+        <ImageButton
+            android:id="@+id/walk"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="Spacer"
+            android:src="@drawable/ic_child_friendly_black_48dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_dateOfBirth"
+            style="@style/Panel.TextView.Medium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Data urodzenia" />
+
+        <TextView
+            android:id="@+id/tv_walk"
+            style="@style/Panel.TextView.Medium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Spacer" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/eat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="Posiłek"
+            android:src="@drawable/eat_black_48dp" />
+
+        <ImageButton
+            android:id="@+id/toilet"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="Toaleta"
+            android:src="@drawable/toilet_black_48dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_eat"
+            style="@style/Panel.TextView.Medium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Posiłek  " />
+
+        <TextView
+            android:id="@+id/tv_toilet"
+            style="@style/Panel.TextView.Medium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Toaleta" />
+    </LinearLayout>
+
+</LinearLayout>

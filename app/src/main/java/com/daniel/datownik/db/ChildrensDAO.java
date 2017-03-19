@@ -50,6 +50,11 @@ public class ChildrensDAO {
 //        return children;
     }
 
+    public void deleteChild(final Integer id){
+        sqliteDbHelper.getWritableDatabase().delete(Childrens.TABLE_CHILDRENS," " + Childrens.COLUMN_ID + " = ? ",
+                new String[]{String.valueOf(id)});
+    }
+
     public List<Children> getAllChildrens(){
         List<Children> childrens = new ArrayList<Children>();
         Cursor cursor = sqLiteDatabase.query(sqliteDbHelper.TABLE_CHILDRENS,allColumns,null,null,null,null,null);
@@ -65,7 +70,6 @@ public class ChildrensDAO {
 
     private Children cursonToChild(Cursor cursor) {
         Children children = new Children();
-        children.setId(cursor.getInt(0));
         children.setName(cursor.getString(1));
         children.setDayOfBirth(cursor.getString(2));
         children.setMonthOfBirth(cursor.getString(3));

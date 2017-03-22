@@ -136,15 +136,32 @@ public class AddChildrenActivity extends Activity {
         String dayString = day.getText().toString();
         String monthString = month.getText().toString();
         String yearString = year.getText().toString();
+
         ChildrensDAO childrensDAO = new ChildrensDAO(this);
-        try{
-            childrensDAO.insertChild(childNameString, day.getText().toString(), month.getText().toString(), year.getText().toString());
-        }
-        catch (SQLException e) {
-            Log.e(TAG, "Błąd przy dodawaniu dziecka " + e.toString());
-            
-        }
 
+        if (!editTextIsEmpty(day) &&
+                !editTextIsEmpty(month) &&
+                !editTextIsEmpty(year) &&
+                !editTextIsEmpty(childName)) {
+            try {
+                childrensDAO.insertChild(childNameString, day.getText().toString(), month.getText().toString(), year.getText().toString());
+                Toast toast = Toast.makeText(getApplicationContext(), "Zapisane", Toast.LENGTH_SHORT);
+                toast.show();
+            } catch (SQLException e) {
+                Log.e(TAG, "Błąd przy dodawaniu dziecka " + e.toString());
 
+            }
+
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Uzupelnij dane", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+    public boolean editTextIsEmpty(EditText editText) {
+        if (editText.getText().equals("")) {
+            return true;
+        } else
+            return false;
     }
 }

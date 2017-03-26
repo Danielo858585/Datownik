@@ -1,6 +1,7 @@
 package com.daniel.datownik;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.SQLException;
 import android.icu.util.Calendar;
 import android.os.Build;
@@ -23,6 +24,7 @@ import butterknife.OnClick;
 public class AddChildrenActivity extends Activity {
 
     private static final String TAG = "AddChildrenActivity";
+    private Intent intent;
     @Nullable
     @BindView(R.id.et_childName)
     EditText childName;
@@ -37,11 +39,11 @@ public class AddChildrenActivity extends Activity {
     @BindView(R.id.btn_back)
     Button back;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_children);
+        intent = new Intent(this,PanelActivity.class);
         ButterKnife.bind(this);
 
         TextWatcher watcherDay = new TextWatcher() {
@@ -133,10 +135,6 @@ public class AddChildrenActivity extends Activity {
     @OnClick(R.id.btn_saveChild)
     public void saveChild(){
         String childNameString = childName.getText().toString();
-        String dayString = day.getText().toString();
-        String monthString = month.getText().toString();
-        String yearString = year.getText().toString();
-
         ChildrensDAO childrensDAO = new ChildrensDAO(this);
 
         if (!editTextIsEmpty(day) &&
@@ -147,6 +145,7 @@ public class AddChildrenActivity extends Activity {
                 childrensDAO.insertChild(childNameString, day.getText().toString(), month.getText().toString(), year.getText().toString());
                 Toast toast = Toast.makeText(getApplicationContext(), "Zapisane", Toast.LENGTH_SHORT);
                 toast.show();
+                startActivity(intent);
             } catch (SQLException e) {
                 Log.e(TAG, "Błąd przy dodawaniu dziecka " + e.toString());
 
@@ -158,8 +157,13 @@ public class AddChildrenActivity extends Activity {
         }
     }
 
+    @OnClick(R.id.btn_back)
+    public void back(){
+        startActivity(intent);
+    }
+
     public boolean editTextIsEmpty(EditText editText) {
-        if (editText.getText().equals("")) {
+        if (editText.getText().length()==0) {
             return true;
         } else
             return false;

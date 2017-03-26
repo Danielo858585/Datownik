@@ -11,9 +11,7 @@ public class Children {
 
     @Override
     public String toString() {
-        return "Children{" +
-                "name='" + name + '\'' +
-                '}';
+        return name;
     }
 
     public String name;

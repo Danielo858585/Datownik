@@ -11,7 +11,7 @@ import android.util.Log;
 
 public class SqliteDbHelper extends SQLiteOpenHelper implements Childrens {
     public final static String DB_NAME = "parent.db";
-    public final static int DB_VERSION = 2;
+    public final static int DB_VERSION = 3;
     private static final String DATABASE_CREATE = "create table "
             + Childrens.TABLE_CHILDRENS
             + " ("

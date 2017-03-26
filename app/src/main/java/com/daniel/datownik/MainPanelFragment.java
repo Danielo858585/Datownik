@@ -38,7 +38,7 @@ public class MainPanelFragment extends Fragment {
                 switch (v.getId()) {
                     case R.id.dateOfBirth:
                         updateDetail("Szczegółowe informacje o elemencie pierwszym.");
-
+                        goToCheckAgeActivity();
                         break;
                     case R.id.walk:
                         updateDetail("Szczegółowe informacje o elemencie drugim.");
@@ -96,4 +96,8 @@ public class MainPanelFragment extends Fragment {
         startActivity(intent);
     }
 
+    public void goToCheckAgeActivity(){
+        Intent intent = new Intent(getContext(),CheckAgeActivity.class);
+        startActivity(intent);
+    }
 }

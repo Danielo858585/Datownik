@@ -37,22 +37,15 @@ public class ChildrensDAO {
         values.put(sqliteDbHelper.COLUMN_MONTH,month.toString());
         values.put(sqliteDbHelper.COLUMN_YEAR,year.toString());
         sqliteDbHelper.getWritableDatabase().insert(Childrens.TABLE_CHILDRENS, null, values);
-
-
-
-
-//        long insertId = sqLiteDatabase.insert(sqliteDbHelper.TABLE_CHILDRENS,null,values);
-//        Cursor cursor = sqLiteDatabase.query(sqliteDbHelper.TABLE_CHILDRENS,allColumns,sqliteDbHelper.COLUMN_ID + " = "
-//        + insertId,null,null,null,null);
-//        cursor.moveToFirst();
-//        Children children = cursonToChild(cursor);
-//        cursor.close();
-//        return children;
     }
 
     public void deleteChild(final Integer id){
         sqliteDbHelper.getWritableDatabase().delete(Childrens.TABLE_CHILDRENS," " + Childrens.COLUMN_ID + " = ? ",
                 new String[]{String.valueOf(id)});
+    }
+
+    public void getChild(final Integer id){
+
     }
 
     public List<Children> getAllChildrens(){

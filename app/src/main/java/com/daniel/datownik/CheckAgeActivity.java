@@ -29,7 +29,7 @@ import com.daniel.datownik.db.SqliteDbHelper;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class CheckAgeActivity extends AppCompatActivity {
 
     private Button check, save, open, clear, addChild;
     private EditText et_day, et_month, et_year, et_childName;
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
         }
         catch (Exception e){
-            Log.e("MainActivity", "Błąd usuwania pozycji" + e.toString());
+            Log.e("CheckAgeActivity", "Błąd usuwania pozycji" + e.toString());
         }
 
         return super.onContextItemSelected(item);
@@ -85,10 +85,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         check = (Button) findViewById(R.id.btn_check);
-        save = (Button) findViewById(R.id.btn_save);
-        open = (Button) findViewById(R.id.btn_open);
         clear = (Button) findViewById(R.id.btn_clear);
-        addChild = (Button) findViewById(R.id.btn_addChild);
         et_day = (EditText) findViewById(R.id.et_day);
         et_month = (EditText) findViewById(R.id.et_month);
         et_year = (EditText) findViewById(R.id.et_year);
@@ -104,12 +101,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                et_day.setText(parent.getItemAtPosition(position).toString());
+                et_month.setText(parent.getItemAtPosition(position).toString());
+                et_year.setText(parent.getItemAtPosition(position).toString());
                 et_childName.setText(parent.getItemAtPosition(position).toString());
 
             }
         });
-
-
         intent = new Intent(this, ResumeActivity.class);
 
         clear.setOnClickListener(new View.OnClickListener() {
@@ -119,19 +117,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveOnClick();
-            }
-        });
-
-        open.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadOnClick();
-            }
-        });
+//        save.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                saveOnClick();
+//            }
+//        });
+//
+//        open.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                loadOnClick();
+//            }
+//        });
 
         check.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("LongLogTag")
@@ -171,13 +169,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        addChild.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AddChildrenActivity.class);
-                startActivity(intent);
-            }
-        });
+//        addChild.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), AddChildrenActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         TextWatcher watcherDay = new TextWatcher() {
             @Override
@@ -285,31 +283,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), "Brak dziecka o imieniu " + et_childName.getText().toString(), Toast.LENGTH_SHORT);
                 toast.show();
             }
-
-
         }
-    }
-
-    private void saveOnClick() {
-        SharedPreferences sharedPreferences = getSharedPreferences("datownikMojeUstawienia", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        if (!editTextIsEmpty(et_day) &&
-                !editTextIsEmpty(et_month) &&
-                !editTextIsEmpty(et_year) &&
-                !editTextIsEmpty(et_childName)) {
-            editor.putInt(et_childName.getText().toString() + "dayOfBirth", Integer.parseInt(et_day.getText().toString()));
-            editor.putInt(et_childName.getText().toString() + "monthOfBirth", Integer.parseInt(et_month.getText().toString()));
-            editor.putInt(et_childName.getText().toString() + "yearOfBirth", Integer.parseInt(et_year.getText().toString()));
-            editor.putString(et_childName.getText().toString() + "childName", et_childName.getText().toString());
-            editor.apply();
-            Toast toast = Toast.makeText(getApplicationContext(), "Zapisane", Toast.LENGTH_SHORT);
-            toast.show();
-        } else {
-            Toast toast = Toast.makeText(getApplicationContext(), "Uzupelnij dane", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
-
     }
 
     public boolean editTextIsEmpty(EditText editText) {

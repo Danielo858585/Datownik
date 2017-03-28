@@ -13,6 +13,8 @@ import com.daniel.datownik.db.Children;
 public class App extends Application {
 
     public Children children;
+    private static App instance;
+    public static volatile Handler applicationHandler = null;
 
     public Children getChildren() {
         return children;
@@ -33,9 +35,6 @@ public class App extends Application {
     public static Context getContext() {
         return instance;
     }
-
-    private static App instance;
-    public static volatile Handler applicationHandler = null;
 
     @Override
     public void onCreate() {

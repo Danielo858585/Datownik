@@ -14,9 +14,13 @@ import java.util.List;
  */
 
 public class ChildrensDAO {
+
     private SQLiteDatabase sqLiteDatabase;
     private SqliteDbHelper sqliteDbHelper;
+
+
     private String [] allColumns = {sqliteDbHelper.COLUMN_ID, sqliteDbHelper.COLUMN_NAME, sqliteDbHelper.COLUMN_DAY, sqliteDbHelper.COLUMN_MONTH, sqliteDbHelper.COLUMN_YEAR};
+
 
     public ChildrensDAO(Context context){
         sqliteDbHelper = new SqliteDbHelper(context);
@@ -44,16 +48,12 @@ public class ChildrensDAO {
                 new String[]{String.valueOf(id)});
     }
 
-    public void getChild(final Integer id){
-
-    }
-
     public List<Children> getAllChildrens(){
         List<Children> childrens = new ArrayList<Children>();
         Cursor cursor = sqLiteDatabase.query(sqliteDbHelper.TABLE_CHILDRENS,allColumns,null,null,null,null,null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
-            Children children = cursonToChild(cursor);
+            Children children = cursorToChild(cursor);
             childrens.add(children);
             cursor.moveToNext();
         }
@@ -61,7 +61,7 @@ public class ChildrensDAO {
         return childrens;
     }
 
-    private Children cursonToChild(Cursor cursor) {
+    private Children cursorToChild(Cursor cursor) {
         Children children = new Children();
         children.setName(cursor.getString(1));
         children.setDayOfBirth(cursor.getString(2));

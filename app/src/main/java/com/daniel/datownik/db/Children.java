@@ -6,7 +6,7 @@ package com.daniel.datownik.db;
 
 public class Children {
 
-    public Children() {
+    Children() {
     }
 
     @Override
@@ -61,6 +61,5 @@ public class Children {
     public void setName(String name) {
         this.name = name;
     }
-
 
 }

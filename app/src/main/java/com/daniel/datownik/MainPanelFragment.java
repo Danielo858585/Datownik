@@ -41,6 +41,7 @@ public class MainPanelFragment extends Fragment {
                         break;
                     case R.id.eat:
                         updateDetail("Szczegółowe informacje o elemencie drugim.");
+                        goToEatActivity();
                         break;
                     case R.id.toilet:
                         updateDetail("Szczegółowe informacje o elemencie drugim.");
@@ -94,6 +95,11 @@ public class MainPanelFragment extends Fragment {
 
     public void goToCheckAgeActivity(){
         Intent intent = new Intent(getContext(),CheckAgeActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToEatActivity(){
+        Intent intent = new Intent(getContext(),AddEatActivity.class);
         startActivity(intent);
     }
 }

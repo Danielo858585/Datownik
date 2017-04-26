@@ -1,5 +1,6 @@
 package com.daniel.datownik.db.Eat;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,7 +29,14 @@ public class EatsDAO {
         sqliteDbHelper.close();
     }
 
+    public void insertEat (String typeFood, String amountFood, String dateTime){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(sqliteDbHelper.COLUMN_AMOUNT_OF_EATEN,amountFood);
+        contentValues.put(sqliteDbHelper.COLUMN_TYPE_FOOD,typeFood);
+        contentValues.put(sqliteDbHelper.COLUMN_DATETIME,dateTime);
+        sqliteDbHelper.getWritableDatabase().insert(Eats.TABLE_EATS,null,contentValues);
 
+    }
 
 
 }

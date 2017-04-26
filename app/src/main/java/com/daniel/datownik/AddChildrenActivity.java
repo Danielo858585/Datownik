@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.daniel.datownik.db.ChildrensDAO;
+import com.daniel.datownik.db.Children.ChildrensDAO;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

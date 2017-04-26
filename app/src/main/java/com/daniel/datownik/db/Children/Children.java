@@ -1,4 +1,4 @@
-package com.daniel.datownik.db;
+package com.daniel.datownik.db.Children;
 
 /**
  * Created by Daniel on 23.02.2017.

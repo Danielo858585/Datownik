@@ -22,8 +22,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.daniel.datownik.db.Children;
-import com.daniel.datownik.db.ChildrensDAO;
+import com.daniel.datownik.db.Children.Children;
+import com.daniel.datownik.db.Children.ChildrensDAO;
 
 import java.util.List;
 

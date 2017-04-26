@@ -1,4 +1,4 @@
-package com.daniel.datownik.db;
+package com.daniel.datownik.db.Children;
 
 /**
  * Created by Daniel on 27.02.2017.
@@ -6,7 +6,7 @@ package com.daniel.datownik.db;
 
 public interface Childrens {
     String TABLE_CHILDRENS = "childrens";
-    String COLUMN_ID = "_id";
+    String COLUMN_ID_CHILDRENS = "_id";
     String COLUMN_NAME = "name";
     String COLUMN_DAY = "dayOfBirth";
     String COLUMN_MONTH = "monthOfBirth";

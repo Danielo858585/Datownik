@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
-import com.daniel.datownik.db.Children;
+import com.daniel.datownik.db.Children.Children;
 
 /**
  * Created by Daniel on 27.02.2017.

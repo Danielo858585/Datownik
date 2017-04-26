@@ -1,10 +1,12 @@
-package com.daniel.datownik.db;
+package com.daniel.datownik.db.Children;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.daniel.datownik.db.SqliteDbHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +46,7 @@ public class ChildrensDAO {
     }
 
     public void deleteChild(final Integer id){
-        sqliteDbHelper.getWritableDatabase().delete(Childrens.TABLE_CHILDRENS," " + Childrens.COLUMN_ID + " = ? ",
+        sqliteDbHelper.getWritableDatabase().delete(Childrens.TABLE_CHILDRENS," " + Childrens.COLUMN_ID_CHILDRENS + " = ? ",
                 new String[]{String.valueOf(id)});
     }
 

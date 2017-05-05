@@ -36,8 +36,8 @@ public class ResumeActivity extends AppCompatActivity {
         tygodnie.setText(String.valueOf(weeks));
         if (name.length() != 0) {
             title.setText(name);
-            titleDay.setText(name + "ma dni");
-            titleWeeks.setText(name + "ma tygodni");
+            titleDay.setText(name + " ma dni");
+            titleWeeks.setText(name + " ma tygodni");
         }
 
     }

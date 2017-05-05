@@ -21,15 +21,26 @@
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textSize">20dp</item>
     </style>
-    <style name="Text.Button">
-        <item name="android:padding">5dp</item>
+
+    <style name="Text.Medium">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textSize">16dp</item>
     </style>
 
-    <style name="Text.Button.Big">
+    <style name="Text.Small">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+    <style name="Text.Button" parent="Text">
+        <!--<item name="android:layout_margin">5dp</item>-->
+        <item name="android:background">@color/basicColor</item>
+    </style>
+
+    <style name="Text.Button.Big" parent="Text.Button">
         <item name="android:textSize">24dp</item>
     </style>
 
-    <style name="Text.Button.Medium">
+    <style name="Text.Button.Medium" parent="Text.Button">
         <item name="android:textSize">18dp</item>
     </style>
 
@@ -37,6 +48,24 @@
         <item name="android:textSize">12dp</item>
     </style>
 
+    <style name="Panel">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="Panel.TextView">
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="Panel.TextView.Big">
+        <item name="android:textSize">20dp</item>
+    </style>
+    <style name="Panel.TextView.Medium">
+        <item name="android:textSize">18dp</item>
+    </style>
+    <style name="Panel.TextView.Small">
+        <item name="android:textSize">14dp</item>
+    </style>
 
 
 </resources>

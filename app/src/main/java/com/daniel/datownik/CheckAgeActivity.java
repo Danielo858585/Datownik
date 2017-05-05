@@ -2,7 +2,6 @@ package com.daniel.datownik;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Build;
@@ -11,6 +10,10 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,14 +22,15 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.daniel.datownik.db.Children;
-import com.daniel.datownik.db.ChildrensDAO;
+import com.daniel.datownik.db.Children.Children;
+import com.daniel.datownik.db.Children.ChildrensDAO;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class CheckAgeActivity extends AppCompatActivity {
 
-    private Button check, save, open, clear, addChild;
+    private Button check;
+    private Button clear;
     private EditText et_day, et_month, et_year, et_childName;
     private int day, month, year;
     private Intent intent;
@@ -35,20 +39,60 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        List<Children> values = childrensDAO.getAllChildrens();
+        ArrayAdapter<Children> adapter = new ArrayAdapter<Children>(this, android.R.layout.simple_list_item_1, values);
+        children.setAdapter(adapter);
+        children.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Children children = (Children) parent.getItemAtPosition(position);
+                et_childName.setText(children.getName().toString());
+                et_day.setText(children.getDayOfBirth());
+                et_month.setText(children.getMonthOfBirth());
+                et_year.setText(children.getYearOfBirth());
+            }
+        });
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        try{
+            childrensDAO = new ChildrensDAO(this);
+            childrensDAO.deleteChild(id);
+            Toast toast = Toast.makeText(getApplicationContext(),"Pozycja usunięta",Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        catch (Exception e){
+            Log.e("CheckAgeActivity", "Błąd usuwania pozycji" + e.toString());
+        }
+
+        return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_context_main,menu);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         check = (Button) findViewById(R.id.btn_check);
-        save = (Button) findViewById(R.id.btn_save);
-        open = (Button) findViewById(R.id.btn_open);
         clear = (Button) findViewById(R.id.btn_clear);
-        addChild = (Button) findViewById(R.id.btn_addChild);
         et_day = (EditText) findViewById(R.id.et_day);
         et_month = (EditText) findViewById(R.id.et_month);
         et_year = (EditText) findViewById(R.id.et_year);
         et_childName = (EditText) findViewById(R.id.et_childName);
         children = (ListView) findViewById(R.id.lv_children);
+        registerForContextMenu(children);
         childrensDAO = new ChildrensDAO(this);
         childrensDAO.open();
         List<Children> values = childrensDAO.getAllChildrens();
@@ -57,31 +101,21 @@ public class MainActivity extends AppCompatActivity {
         children.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                et_childName.setText(parent.getItemAtPosition(position).toString());
+
+                Children children = (Children) parent.getItemAtPosition(position);
+                et_childName.setText(children.getName().toString());
+                et_day.setText(children.getDayOfBirth());
+                et_month.setText(children.getMonthOfBirth());
+                et_year.setText(children.getYearOfBirth());
+
             }
         });
-
-
         intent = new Intent(this, ResumeActivity.class);
 
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clearOnClick();
-            }
-        });
-
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveOnClick();
-            }
-        });
-
-        open.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadOnClick();
             }
         });
 
@@ -119,14 +153,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     intent.putExtra("name", "");
                 }
-                startActivity(intent);
-            }
-        });
-
-        addChild.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AddChildrenActivity.class);
                 startActivity(intent);
             }
         });
@@ -215,7 +241,6 @@ public class MainActivity extends AppCompatActivity {
         et_day.addTextChangedListener(watcherDay);
         et_month.addTextChangedListener(watcherMonth);
         et_year.addTextChangedListener(watcherYear);
-
     }
 
     private void clearOnClick() {
@@ -225,49 +250,7 @@ public class MainActivity extends AppCompatActivity {
         et_childName.setText("");
     }
 
-    private void loadOnClick() {
-        SharedPreferences sharedPreferences = getSharedPreferences("datownikMojeUstawienia", MODE_PRIVATE);
-        if (sharedPreferences.contains(et_childName.getText().toString() + "childName")) {
-            if ((sharedPreferences.getString(et_childName.getText().toString() + "childName", "")).equals(et_childName.getText().toString())) {
-                et_day.setText(Integer.toString(sharedPreferences.getInt(et_childName.getText().toString() + "dayOfBirth", 0)));
-                et_month.setText(Integer.toString(sharedPreferences.getInt(et_childName.getText().toString() + "monthOfBirth", 0)));
-                et_year.setText(Integer.toString(sharedPreferences.getInt(et_childName.getText().toString() + "yearOfBirth", 0)));
-                et_childName.setText(sharedPreferences.getString(et_childName.getText().toString() + "childName", "Dawid"));
-            } else {
-                Toast toast = Toast.makeText(getApplicationContext(), "Brak dziecka o imieniu " + et_childName.getText().toString(), Toast.LENGTH_SHORT);
-                toast.show();
-            }
+    private void itemClick() {
 
-
-        }
-    }
-
-    private void saveOnClick() {
-        SharedPreferences sharedPreferences = getSharedPreferences("datownikMojeUstawienia", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        if (!editTextIsEmpty(et_day) &&
-                !editTextIsEmpty(et_month) &&
-                !editTextIsEmpty(et_year) &&
-                !editTextIsEmpty(et_childName)) {
-            editor.putInt(et_childName.getText().toString() + "dayOfBirth", Integer.parseInt(et_day.getText().toString()));
-            editor.putInt(et_childName.getText().toString() + "monthOfBirth", Integer.parseInt(et_month.getText().toString()));
-            editor.putInt(et_childName.getText().toString() + "yearOfBirth", Integer.parseInt(et_year.getText().toString()));
-            editor.putString(et_childName.getText().toString() + "childName", et_childName.getText().toString());
-            editor.apply();
-            Toast toast = Toast.makeText(getApplicationContext(), "Zapisane", Toast.LENGTH_SHORT);
-            toast.show();
-        } else {
-            Toast toast = Toast.makeText(getApplicationContext(), "Uzupelnij dane", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
-
-    }
-
-    public boolean editTextIsEmpty(EditText editText) {
-        if (editText.getText().equals("")) {
-            return true;
-        } else
-            return false;
     }
 }

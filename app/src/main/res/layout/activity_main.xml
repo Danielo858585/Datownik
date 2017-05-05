@@ -10,66 +10,63 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.daniel.datownik.MainActivity"
+    tools:context="com.daniel.datownik.CheckAgeActivity"
     style="@style/Text">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-    <EditText
-        android:id="@+id/et_day"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Wprowadź dzień urodzenia"
-        android:inputType="date"
-        android:maxEms="2"
-        style="@style/Text"/>
+        <EditText
+            android:id="@+id/et_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Wprowadź dzień urodzenia"
+            android:inputType="date"
+            android:maxEms="2"
+            style="@style/Text"/>
 
-    <EditText
-        android:id="@+id/et_month"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Wprowadź miesiąc urodzenia"
-        android:inputType="date"
-        android:maxEms="2"
-        style="@style/Text"/>
+        <EditText
+            android:id="@+id/et_month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Wprowadź miesiąc urodzenia"
+            android:inputType="date"
+            android:maxEms="2"
+            style="@style/Text"/>
 
-    <EditText
-        android:id="@+id/et_year"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Wprowadź rok urodzenia"
-        android:inputType="date"
-        android:maxEms="4"
-        style="@style/Text"/>
+        <EditText
+            android:id="@+id/et_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Wprowadź rok urodzenia"
+            android:inputType="date"
+            android:maxEms="4"
+            style="@style/Text"/>
 
-    <EditText
-        android:id="@+id/et_childName"
-        style="@style/Text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Wprowadź imię dziecka"
-        android:inputType="text"
-        android:maxEms="2" />
+        <EditText
+            android:id="@+id/et_childName"
+            style="@style/Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Wprowadź imię dziecka"
+            android:inputType="text"
+            android:maxEms="4" />
 
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="61dp">
 
         <Button
             android:id="@+id/btn_check"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="34dp"
             android:layout_weight="1"
             android:text="Sprawdz"
             style="@style/Text.Button.Big"/>
@@ -79,58 +76,54 @@
             android:id="@+id/btn_clear"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="34dp"
             android:layout_weight="1"
             android:text="Wyczysc"
             style="@style/Text.Button.Big"/>
     </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
 
-        <Button
-            android:id="@+id/btn_save"
-            style="@style/Text.Button.Big"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="34dp"
-            android:layout_weight="1"
-            android:text="Zapisz" />
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/btn_save"&ndash;&gt;-->
+            <!--&lt;!&ndash;style="@style/Text.Button.Big"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="Zapisz" />&ndash;&gt;-->
 
-        <Button
-            android:id="@+id/btn_open"
-            style="@style/Text.Button.Big"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="34dp"
-            android:layout_weight="1"
-            android:text="Wczytaj" />
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/btn_open"&ndash;&gt;-->
+            <!--&lt;!&ndash;style="@style/Text.Button.Big"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="Wczytaj" />&ndash;&gt;-->
 
-        <Button
-            android:id="@+id/btn_addChild"
-            style="@style/Text.Button.Big"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="34dp"
-            android:layout_weight="1"
-            android:text="Dodaj dziecko" />
+        <!--&lt;!&ndash;<Button&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/btn_addChild"&ndash;&gt;-->
+            <!--&lt;!&ndash;style="@style/Text.Button.Big"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="Dodaj dziecko" />&ndash;&gt;-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_height="match_parent">
 
         <ListView
             android:id="@+id/lv_children"
             android:layout_width="match_parent"
-            android:layout_height="160dp">
+            android:layout_height="match_parent">
 
         </ListView>
+
     </LinearLayout>
 
 </LinearLayout>

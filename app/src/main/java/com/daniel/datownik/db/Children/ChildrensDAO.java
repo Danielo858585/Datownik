@@ -1,11 +1,12 @@
-package com.daniel.datownik.db;
+package com.daniel.datownik.db.Children;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
+
+import com.daniel.datownik.db.SqliteDbHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,13 @@ import java.util.List;
  */
 
 public class ChildrensDAO {
+
     private SQLiteDatabase sqLiteDatabase;
     private SqliteDbHelper sqliteDbHelper;
-    private String [] allColumns = {sqliteDbHelper.COLUMN_ID, sqliteDbHelper.COLUMN_NAME};
+
+
+    private String [] allColumns = {sqliteDbHelper.COLUMN_ID, sqliteDbHelper.COLUMN_NAME, sqliteDbHelper.COLUMN_DAY, sqliteDbHelper.COLUMN_MONTH, sqliteDbHelper.COLUMN_YEAR};
+
 
     public ChildrensDAO(Context context){
         sqliteDbHelper = new SqliteDbHelper(context);
@@ -31,21 +36,18 @@ public class ChildrensDAO {
         sqliteDbHelper.close();
     }
 
-    public void insertChild(String name){
+    public void insertChild(String name, String day, String month, String year){
         ContentValues values = new ContentValues();
         values.put(sqliteDbHelper.COLUMN_NAME,name.toString());
+        values.put(sqliteDbHelper.COLUMN_DAY,day.toString());
+        values.put(sqliteDbHelper.COLUMN_MONTH,month.toString());
+        values.put(sqliteDbHelper.COLUMN_YEAR,year.toString());
         sqliteDbHelper.getWritableDatabase().insert(Childrens.TABLE_CHILDRENS, null, values);
-        Log.d("AddChild","Dodane do bazy");
+    }
 
-
-
-//        long insertId = sqLiteDatabase.insert(sqliteDbHelper.TABLE_CHILDRENS,null,values);
-//        Cursor cursor = sqLiteDatabase.query(sqliteDbHelper.TABLE_CHILDRENS,allColumns,sqliteDbHelper.COLUMN_ID + " = "
-//        + insertId,null,null,null,null);
-//        cursor.moveToFirst();
-//        Children children = cursonToChild(cursor);
-//        cursor.close();
-//        return children;
+    public void deleteChild(final Integer id){
+        sqliteDbHelper.getWritableDatabase().delete(Childrens.TABLE_CHILDRENS," " + Childrens.COLUMN_ID_CHILDRENS + " = ? ",
+                new String[]{String.valueOf(id)});
     }
 
     public List<Children> getAllChildrens(){
@@ -53,7 +55,7 @@ public class ChildrensDAO {
         Cursor cursor = sqLiteDatabase.query(sqliteDbHelper.TABLE_CHILDRENS,allColumns,null,null,null,null,null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
-            Children children = cursonToChild(cursor);
+            Children children = cursorToChild(cursor);
             childrens.add(children);
             cursor.moveToNext();
         }
@@ -61,10 +63,12 @@ public class ChildrensDAO {
         return childrens;
     }
 
-    private Children cursonToChild(Cursor cursor) {
+    private Children cursorToChild(Cursor cursor) {
         Children children = new Children();
-        children.setId(cursor.getInt(0));
         children.setName(cursor.getString(1));
+        children.setDayOfBirth(cursor.getString(2));
+        children.setMonthOfBirth(cursor.getString(3));
+        children.setYearOfBirth(cursor.getString(4));
         return children;
     }
 }

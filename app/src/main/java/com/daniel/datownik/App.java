@@ -3,13 +3,26 @@ package com.daniel.datownik;
 import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
-import android.widget.EditText;
+
+import com.daniel.datownik.db.Children.Children;
 
 /**
  * Created by Daniel on 27.02.2017.
  */
 
 public class App extends Application {
+
+    public Children children;
+    private static App instance;
+    public static volatile Handler applicationHandler = null;
+
+    public Children getChildren() {
+        return children;
+    }
+
+    public void setChildren(Children children) {
+        this.children = children;
+    }
 
     public static App getInstance() {
         return instance;
@@ -21,16 +34,6 @@ public class App extends Application {
 
     public static Context getContext() {
         return instance;
-    }
-
-    private static App instance;
-    public static volatile Handler applicationHandler = null;
-
-    public boolean editTextIsEmpty(EditText editText) {
-        if (editText.getText().equals("")) {
-            return true;
-        } else
-            return false;
     }
 
     @Override

@@ -14,7 +14,7 @@ import com.daniel.datownik.db.Eat.Eats;
 
 public class SqliteDbHelper extends SQLiteOpenHelper implements Childrens, Eats {
     public final static String DB_NAME = "parent.db";
-    public final static int DB_VERSION = 3;
+    public final static int DB_VERSION = 4;
     private static final String DATABASE_CHILDRENS_CREATE = "create table "
             + Childrens.TABLE_CHILDRENS
             + " ("

@@ -10,6 +10,14 @@ public class Eat {
     public String typeOfFood;
     public String amountOfEaten;
 
+
+    public Eat(int id, String date, String typeOfFood, String amountOfEaten) {
+        this.id = id;
+        this.date = date;
+        this.typeOfFood = typeOfFood;
+        this.amountOfEaten = amountOfEaten;
+    }
+
     public int getId() {
         return id;
     }

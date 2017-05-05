@@ -32,7 +32,7 @@
         <item name="android:textSize">12dp</item>
     </style>
     <style name="Text.Button" parent="Text">
-        <item name="android:layout_margin">5dp</item>
+        <!--<item name="android:layout_margin">5dp</item>-->
         <item name="android:background">@color/basicColor</item>
     </style>
 

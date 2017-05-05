@@ -16,6 +16,9 @@ public class Children {
 
     public String name;
     public String DayOfBirth;
+    public String MonthOfBirth;
+    public String YearOfBirth;
+    public int id;
 
     public String getDayOfBirth() {
         return DayOfBirth;
@@ -40,11 +43,6 @@ public class Children {
     public void setYearOfBirth(String yearOfBirth) {
         YearOfBirth = yearOfBirth;
     }
-
-    public String MonthOfBirth;
-    public String YearOfBirth;
-
-    public int id;
 
     public int getId() {
         return id;

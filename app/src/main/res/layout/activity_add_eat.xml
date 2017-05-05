@@ -9,16 +9,19 @@
     tools:layout_editor_absoluteX="0dp">
 
     <TextView
+        android:id="@+id/eatTvTitle"
+        style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="356dp"
         android:layout_height="55dp"
-        android:text="Wprowadz informacje o zażytym posiłku"
-        android:id="@+id/eatTvTitle"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="8dp"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_marginStart="8dp" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="0dp"
+        android:text="Wprowadz informacje o zażytym posiłku"
+        android:textAlignment="center"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/eatEtTypeEat"
@@ -42,15 +45,28 @@
 
     <Button
         android:id="@+id/eatBtnAddEat"
+        style="@style/Text.Button.Medium"
         android:layout_width="267dp"
         android:layout_height="67dp"
-        android:layout_marginBottom="16dp"
-        android:text="Button"
+        android:layout_marginBottom="21dp"
+        android:text="Dodaj"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_goToEatsList" />
+
+    <Button
+        android:id="@+id/btn_goToEatsList"
+        style="@style/Text.Button.Medium"
+        android:layout_width="267dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="-1dp"
+        android:text="Lista posiłków"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        style="@style/Text.Button.Medium"/>
+        tools:layout_editor_absoluteX="-51dp"
+        tools:layout_editor_absoluteY="460dp" />
 
 
 </android.support.constraint.ConstraintLayout>
